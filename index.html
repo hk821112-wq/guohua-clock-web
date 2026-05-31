@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>小時候打卡系統</title>
+  <title>小時候打卡系統-國華</title>
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
@@ -152,8 +152,8 @@
       <div id="status" class="status">系統載入中...</div>
 
       <div id="bindBox" class="hidden">
-        <div class="section-title">第一次使用｜綁定員工ID</div>
-        <input id="employeeId" type="text" placeholder="請輸入員工ID，例如 LH001">
+        <div class="section-title">第一次使用｜綁定員工UID</div>
+        <input id="employeeId" type="text" placeholder="請輸入員工UID (電話號碼)">
         <button class="btn-bind" onclick="bindEmployee()">綁定員工資料</button>
       </div>
 
@@ -165,8 +165,13 @@
         <button class="btn-main" onclick="sendClock('休息結束')">結束休息</button>
       </div>
 
+      <div class="tips">
+        打卡時會使用手機定位確認是否在分店範圍內
+      </div>
+    </div>
+
     <div class="footer">
-      LIFF ID：2010240381-aeKasoI4
+      LIFF ID：2010226307-AZeYYFbb
     </div>
   </div>
 
@@ -485,12 +490,18 @@
     }
 
     function formatGroupedRecordsText(title, records) {
-      if (!records || records.length === 0) {
-        return title + '\n\n目前沒有紀錄';
-      }
+  records = records || [];
 
-      const map = {};
+  records = records.filter(function (r) {
+    const result = getField(r, ['result', '狀態']);
+    return result === '成功' || result === '補卡';
+  });
 
+  if (records.length === 0) {
+    return title + '\n\n目前沒有紀錄';
+  }
+
+  const map = {};
       records.forEach(function (r) {
         const date = getField(r, ['date', '日期']);
         const store = getField(r, ['store', '分店']);
@@ -696,6 +707,7 @@
       const cbName = 'jsonpCallback_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
 
       params.callback = cbName;
+      params._t = Date.now();
 
       const query = Object.keys(params)
         .map(function (key) {
