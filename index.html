@@ -255,6 +255,15 @@
         return;
       }
 
+      if (action === 'monthRecords') {
+        getMonthRecords();
+        return;
+      }
+
+      if (action === 'historyRecords') {
+        getHistoryRecords();
+        return;
+      }
       document.getElementById('homeBox').classList.remove('hidden');
 
       setStatus(
