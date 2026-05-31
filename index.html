@@ -328,7 +328,9 @@ setStatus(
           setStatus(res.message);
         }
       });
-    }function getMonthRecords() {
+    }
+
+function getMonthRecords() {
   if (!lineUserId) {
     setStatus('尚未取得 LINE userId，請重新開啟頁面');
     return;
