@@ -171,7 +171,7 @@
     </div>
 
     <div class="footer">
-      LIFF ID：2010226307-AZeYYFbb
+      LIFF ID：2010240381-aeKasoI4
     </div>
   </div>
 
@@ -251,27 +251,28 @@
       }
 
       if (action === 'breakEnd') {
-        sendClock('休息結束');
-        return;
-      }
+  sendClock('休息結束');
+  return;
+}
 
-      if (action === 'monthRecords') {
-        getMonthRecords();
-        return;
-      }
+if (action === 'monthRecords') {
+  getMonthRecords();
+  return;
+}
 
-      if (action === 'historyRecords') {
-        getHistoryRecords();
-        return;
-      }
-      document.getElementById('homeBox').classList.remove('hidden');
+if (action === 'historyRecords') {
+  getHistoryRecords();
+  return;
+}
 
-      setStatus(
-        'LINE 身分取得成功\n' +
-        'LINE 名稱：' + lineDisplayName + '\n\n' +
-        '請從 LINE 下方選單選擇打卡項目'
-      );
-    }
+document.getElementById('homeBox').classList.remove('hidden');
+
+setStatus(
+  'LINE 身分取得成功\n' +
+  'LINE 名稱：' + lineDisplayName + '\n\n' +
+  '請從 LINE 下方選單選擇打卡項目'
+);
+}
 
     function showBindRequired(type) {
       hideAllBoxes();
@@ -327,7 +328,49 @@
           setStatus(res.message);
         }
       });
+    }function getMonthRecords() {
+  if (!lineUserId) {
+    setStatus('尚未取得 LINE userId，請重新開啟頁面');
+    return;
+  }
+
+  hideAllBoxes();
+
+  setStatus('正在查詢本月打卡紀錄...');
+
+  apiCall({
+    action: 'monthRecords',
+    userId: lineUserId
+  }, function (res) {
+    if (res.ok) {
+      setStatus(res.message || '查無本月紀錄');
+    } else {
+      setStatus(res.message || '本月紀錄查詢失敗');
     }
+  });
+}
+
+function getHistoryRecords() {
+  if (!lineUserId) {
+    setStatus('尚未取得 LINE userId，請重新開啟頁面');
+    return;
+  }
+
+  hideAllBoxes();
+
+  setStatus('正在查詢歷史打卡紀錄...');
+
+  apiCall({
+    action: 'historyRecords',
+    userId: lineUserId
+  }, function (res) {
+    if (res.ok) {
+      setStatus(res.message || '查無歷史紀錄');
+    } else {
+      setStatus(res.message || '歷史紀錄查詢失敗');
+    }
+  });
+}
 
     function sendClock(type) {
       if (!lineUserId) {
