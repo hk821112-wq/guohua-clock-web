@@ -15,23 +15,21 @@
   <style>
     :root {
       --bg: #010006;
-      --bg-deep: #04000d;
-      --ink: #f4efff;
-      --muted: rgba(244, 239, 255, 0.62);
-      --soft: rgba(244, 239, 255, 0.38);
-      --line: rgba(244, 239, 255, 0.12);
-      --line-strong: rgba(244, 239, 255, 0.22);
-      --panel: rgba(8, 4, 18, 0.78);
-      --panel-2: rgba(13, 7, 29, 0.68);
-      --purple: #6f4bd8;
-      --purple-soft: #9b7cff;
-      --wine: #5b164d;
-      --rose: #c06a9f;
-      --green: #7dd3a8;
-      --danger: #d75f7a;
-      --paper: rgba(255,255,255,0.045);
-      --radius: 26px;
-      --shadow: 0 26px 70px rgba(0,0,0,0.72);
+      --ink: #f5f0ff;
+      --muted: rgba(245, 240, 255, 0.62);
+      --soft: rgba(245, 240, 255, 0.38);
+      --ghost: rgba(245, 240, 255, 0.18);
+      --line: rgba(245, 240, 255, 0.115);
+      --line2: rgba(245, 240, 255, 0.22);
+      --panel: rgba(7, 3, 15, 0.82);
+      --panel2: rgba(14, 7, 28, 0.72);
+      --purple: #7a55e7;
+      --purple2: #4d2ca8;
+      --plum: #3a1038;
+      --rose: #b45b92;
+      --green: #83d9b2;
+      --danger: #d95c7b;
+      --shadow: 0 26px 76px rgba(0,0,0,0.78);
     }
 
     * {
@@ -50,10 +48,10 @@
       font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 20% -10%, rgba(91, 22, 77, 0.35), transparent 34%),
-        radial-gradient(circle at 92% 4%, rgba(55, 30, 116, 0.34), transparent 31%),
-        radial-gradient(circle at 45% 112%, rgba(73, 39, 148, 0.26), transparent 44%),
-        linear-gradient(168deg, #000005 0%, #03000a 42%, #070112 74%, #010006 100%);
+        radial-gradient(circle at 13% -8%, rgba(58,16,56,.48), transparent 33%),
+        radial-gradient(circle at 90% 4%, rgba(77,44,168,.42), transparent 30%),
+        radial-gradient(circle at 48% 112%, rgba(122,85,231,.22), transparent 42%),
+        linear-gradient(168deg, #000005 0%, #020009 38%, #070112 70%, #010006 100%);
       background-attachment: fixed;
       overflow-x: hidden;
     }
@@ -63,38 +61,53 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background:
-        linear-gradient(120deg, transparent 0 18%, rgba(255,255,255,0.035) 18.5%, transparent 19.5% 100%),
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.022) 0 1px, transparent 1px 42px);
-      opacity: .48;
       z-index: -2;
+      background:
+        linear-gradient(125deg, transparent 0 19%, rgba(255,255,255,.04) 19.35%, transparent 20.1% 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 1px, transparent 1px 48px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.017) 0 1px, transparent 1px 48px);
+      mask-image: linear-gradient(to bottom, black 0%, black 68%, transparent 100%);
+      opacity: .72;
     }
 
     body::after {
-      content: "國華 TEST";
+      content: "ATTENDANCE";
       position: fixed;
-      right: -22px;
-      bottom: 70px;
+      right: -116px;
+      top: 120px;
       pointer-events: none;
-      writing-mode: vertical-rl;
-      color: rgba(255,255,255,0.035);
-      font-size: 72px;
-      font-weight: 900;
-      letter-spacing: 10px;
       z-index: -1;
+      color: rgba(255,255,255,.028);
+      font-size: 72px;
+      font-weight: 950;
+      letter-spacing: 12px;
+      transform: rotate(90deg);
     }
 
     .wrap {
+      position: relative;
       width: 100%;
-      max-width: 450px;
+      max-width: 452px;
       min-height: 100vh;
       margin: 0 auto;
-      padding: 24px 16px 28px;
+      padding: 26px 16px 30px;
+    }
+
+    .wrap::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 118px;
+      bottom: 36px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(245,240,255,.14), transparent);
+      pointer-events: none;
+      opacity: .65;
     }
 
     .header {
       position: relative;
-      padding: 14px 2px 18px;
+      padding: 16px 2px 20px 18px;
       text-align: left;
     }
 
@@ -104,34 +117,56 @@
       align-items: center;
       height: 25px;
       padding: 0 10px;
-      margin-bottom: 12px;
+      margin-bottom: 13px;
       border-radius: 999px;
-      color: rgba(244,239,255,.62);
-      background: rgba(255,255,255,.035);
+      color: rgba(245,240,255,.62);
+      background: rgba(255,255,255,.032);
       border: 1px solid var(--line);
       font-size: 10px;
       font-weight: 900;
-      letter-spacing: 1.6px;
+      letter-spacing: 1.8px;
+    }
+
+    .header::after {
+      content: "打卡手帳";
+      position: absolute;
+      right: 3px;
+      top: 18px;
+      color: rgba(245,240,255,.16);
+      writing-mode: vertical-rl;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 4px;
     }
 
     .brand {
-      position: relative;
-      margin: 0 0 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin: 0 0 10px;
       color: #fff;
-      font-size: clamp(28px, 7.4vw, 35px);
-      font-weight: 950;
-      line-height: 1.12;
-      letter-spacing: 1.7px;
-      text-shadow: 0 16px 42px rgba(0,0,0,.58), 0 0 22px rgba(111,75,216,.28);
     }
 
-    .brand::after {
-      content: "";
-      display: block;
-      width: 64px;
-      height: 1px;
-      margin-top: 12px;
-      background: linear-gradient(90deg, rgba(244,239,255,.54), transparent);
+    .brand-main {
+      font-family: "Noto Serif TC", "Songti TC", "Microsoft JhengHei", serif;
+      font-size: clamp(29px, 7.4vw, 37px);
+      font-weight: 950;
+      line-height: 1.08;
+      letter-spacing: 2px;
+      text-shadow: 0 18px 42px rgba(0,0,0,.62), 0 0 22px rgba(122,85,231,.25);
+    }
+
+    .brand-sub {
+      display: inline-flex;
+      width: fit-content;
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: rgba(245,240,255,.58);
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.07);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 1.4px;
     }
 
     .subtitle {
@@ -149,7 +184,7 @@
       margin-right: 8px;
       border-radius: 99px;
       background: var(--green);
-      box-shadow: 0 0 14px rgba(125,211,168,.55);
+      box-shadow: 0 0 14px rgba(131,217,178,.55);
       vertical-align: 1px;
     }
 
@@ -159,23 +194,35 @@
       padding: 16px;
       border-radius: 30px;
       background:
-        linear-gradient(150deg, rgba(255,255,255,0.075), rgba(255,255,255,0.026)),
+        linear-gradient(150deg, rgba(255,255,255,.072), rgba(255,255,255,.024)),
         var(--panel);
       border: 1px solid var(--line);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.08);
-      backdrop-filter: blur(26px) saturate(125%);
-      -webkit-backdrop-filter: blur(26px) saturate(125%);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.075);
+      backdrop-filter: blur(26px) saturate(120%);
+      -webkit-backdrop-filter: blur(26px) saturate(120%);
     }
 
     .card::before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: 12px;
+      border-radius: 22px;
       pointer-events: none;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,.08), transparent 28%),
-        linear-gradient(100deg, transparent 0 22%, rgba(255,255,255,.035) 23%, transparent 37% 100%);
-      opacity: .9;
+      border-top: 1px solid rgba(245,240,255,.12);
+      border-left: 1px solid rgba(245,240,255,.075);
+      opacity: .75;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      right: -34px;
+      top: -34px;
+      width: 128px;
+      height: 128px;
+      border: 1px solid rgba(245,240,255,.06);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
     .status {
@@ -183,26 +230,39 @@
       z-index: 1;
       min-height: 108px;
       margin-bottom: 18px;
-      padding: 18px;
+      padding: 18px 18px 18px 20px;
       border-radius: 24px;
-      color: rgba(244,239,255,.84);
+      color: rgba(245,240,255,.84);
       font-size: 14px;
       line-height: 1.9;
       white-space: pre-line;
       word-break: break-word;
-      background: rgba(255,255,255,.035);
+      background: rgba(255,255,255,.032);
       border: 1px solid var(--line);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.07), inset 0 -22px 38px rgba(0,0,0,.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.055), inset 0 -22px 38px rgba(0,0,0,.2);
     }
 
     .status::before {
-      content: "STATUS";
-      display: block;
-      margin-bottom: 9px;
-      color: rgba(244,239,255,.32);
+      content: "SYSTEM MESSAGE";
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: rgba(245,240,255,.33);
       font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 1.8px;
+      font-weight: 950;
+      letter-spacing: 1.9px;
+    }
+
+    .status::after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 39px;
+      width: 54px;
+      height: 1px;
+      background: rgba(245,240,255,.24);
+      pointer-events: none;
     }
 
     #homeBox {
@@ -213,29 +273,50 @@
 
     .section-title,
     .mini-title {
-      margin: 16px 2px 10px;
-      color: rgba(244,239,255,.76);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 17px 2px 10px;
+      color: rgba(245,240,255,.76);
       font-size: 13px;
       font-weight: 950;
-      letter-spacing: 1.1px;
+      letter-spacing: 1.15px;
       text-align: left;
     }
 
     .section-title::before,
     .mini-title::before {
       content: "";
-      display: inline-block;
-      width: 18px;
+      width: 22px;
       height: 1px;
-      margin-right: 9px;
-      background: rgba(244,239,255,.36);
-      vertical-align: 5px;
+      background: rgba(245,240,255,.36);
+      flex: 0 0 22px;
+    }
+
+    .section-title::after,
+    .mini-title::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, rgba(245,240,255,.14), transparent);
+      flex: 1;
     }
 
     .action-list {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 11px;
+      padding-left: 10px;
+    }
+
+    .action-list::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      bottom: 16px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(245,240,255,.18), transparent);
     }
 
     .secondary-actions {
@@ -252,8 +333,8 @@
       border: 1px solid var(--line);
       border-radius: 22px;
       color: #fff;
-      background: rgba(255,255,255,.045);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.075), 0 14px 32px rgba(0,0,0,.25);
+      background: rgba(255,255,255,.038);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 14px 32px rgba(0,0,0,.28);
       font-family: inherit;
       cursor: pointer;
       transition: transform .14s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
@@ -270,64 +351,85 @@
     }
 
     .btn-main {
-      min-height: 82px;
+      min-height: 86px;
       padding: 14px 14px;
       overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(111,75,216,.18), rgba(192,106,159,.055)),
-        rgba(255,255,255,.035);
+        linear-gradient(135deg, rgba(122,85,231,.18), rgba(180,91,146,.05)),
+        rgba(255,255,255,.032);
+    }
+
+    .btn-main::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(245,240,255,.52);
+      box-shadow: 0 0 16px rgba(122,85,231,.42);
+      transform: translateY(-50%);
     }
 
     .btn-main::after {
       content: "";
       position: absolute;
-      top: 12px;
-      bottom: 12px;
-      right: 12px;
+      top: 14px;
+      bottom: 14px;
+      right: 44px;
       width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(244,239,255,.28), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(245,240,255,.22), transparent);
     }
 
     .btn-main:hover,
     .btn-outline:hover {
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,.065);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 18px 38px rgba(0,0,0,.32), 0 0 28px rgba(111,75,216,.12);
+      border-color: var(--line2);
+      background: rgba(255,255,255,.056);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 18px 38px rgba(0,0,0,.34), 0 0 28px rgba(122,85,231,.12);
     }
 
     .btn-index {
       position: absolute;
       left: 15px;
       top: 14px;
-      color: rgba(244,239,255,.34);
+      color: rgba(245,240,255,.34);
       font-size: 11px;
       font-weight: 950;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.3px;
     }
 
     .btn-copy {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 5px;
-      padding-left: 40px;
-      padding-right: 36px;
+      gap: 4px;
+      padding-left: 42px;
+      padding-right: 38px;
       text-align: left;
     }
 
+    .btn-kicker {
+      color: rgba(245,240,255,.28);
+      font-size: 9px;
+      font-weight: 950;
+      letter-spacing: 1.45px;
+      line-height: 1;
+    }
+
     .btn-title {
-      color: rgba(255,255,255,.94);
+      color: rgba(255,255,255,.95);
       font-size: 19px;
       font-weight: 950;
-      letter-spacing: .8px;
-      line-height: 1.25;
+      letter-spacing: .9px;
+      line-height: 1.24;
     }
 
     .btn-desc {
-      color: rgba(244,239,255,.42);
+      color: rgba(245,240,255,.43);
       font-size: 12px;
       font-weight: 800;
-      letter-spacing: .4px;
+      letter-spacing: .35px;
       line-height: 1.35;
     }
 
@@ -336,38 +438,38 @@
       right: 18px;
       top: 50%;
       transform: translateY(-50%);
-      color: rgba(244,239,255,.48);
+      color: rgba(245,240,255,.48);
       font-size: 18px;
       font-weight: 300;
     }
 
     .btn-outline,
     .record-inactive {
-      min-height: 56px;
+      min-height: 58px;
       padding: 14px 10px;
-      color: rgba(244,239,255,.78) !important;
-      background: rgba(255,255,255,.028) !important;
-      border: 1px solid rgba(244,239,255,.11) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 12px 28px rgba(0,0,0,.2) !important;
+      color: rgba(245,240,255,.78) !important;
+      background: rgba(255,255,255,.027) !important;
+      border: 1px solid rgba(245,240,255,.105) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 12px 28px rgba(0,0,0,.22) !important;
       font-size: 14px;
       font-weight: 950;
-      letter-spacing: .5px;
+      letter-spacing: .55px;
     }
 
     .btn-bind,
     .btn-secondary {
       min-height: 56px;
       padding: 15px 16px;
-      color: rgba(244,239,255,.86);
-      background: rgba(255,255,255,.052);
+      color: rgba(245,240,255,.86);
+      background: rgba(255,255,255,.048);
       font-size: 15px;
       font-weight: 950;
     }
 
     .btn-danger {
       color: #fff;
-      background: rgba(215,95,122,.18);
-      border-color: rgba(215,95,122,.28);
+      background: rgba(217,92,123,.16);
+      border-color: rgba(217,92,123,.28);
     }
 
     .hidden {
@@ -379,8 +481,8 @@
       z-index: 1;
       margin-top: 14px;
       padding: 12px 14px;
-      color: rgba(244,239,255,.36);
-      background: rgba(255,255,255,.025);
+      color: rgba(245,240,255,.36);
+      background: rgba(255,255,255,.022);
       border: 1px solid rgba(255,255,255,.06);
       border-radius: 20px;
       text-align: center;
@@ -392,7 +494,7 @@
 
     .footer {
       margin-top: 14px;
-      color: rgba(244,239,255,.24);
+      color: rgba(245,240,255,.24);
       text-align: center;
       font-size: 11px;
       line-height: 1.6;
@@ -411,8 +513,8 @@
       border: 1px solid var(--line);
       outline: none;
       color: var(--ink);
-      background: rgba(255,255,255,.036);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+      background: rgba(255,255,255,.033);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.055);
       font-family: inherit;
       font-size: 16px;
       font-weight: 800;
@@ -422,18 +524,18 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(244,239,255,.3);
+      color: rgba(245,240,255,.3);
     }
 
     select {
       padding-right: 44px;
       background-image:
-        linear-gradient(45deg, transparent 50%, rgba(244,239,255,.62) 50%),
-        linear-gradient(135deg, rgba(244,239,255,.62) 50%, transparent 50%);
+        linear-gradient(45deg, transparent 50%, rgba(245,240,255,.62) 50%),
+        linear-gradient(135deg, rgba(245,240,255,.62) 50%, transparent 50%);
       background-position: calc(100% - 22px) 50%, calc(100% - 15px) 50%;
       background-size: 7px 7px, 7px 7px;
       background-repeat: no-repeat;
-      background-color: rgba(255,255,255,.036);
+      background-color: rgba(255,255,255,.033);
     }
 
     select option {
@@ -452,7 +554,7 @@
     select:focus,
     textarea:focus {
       border-color: rgba(155,124,255,.45);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 0 0 3px rgba(111,75,216,.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 0 0 3px rgba(122,85,231,.12);
     }
 
     input[type="date"]::-webkit-calendar-picker-indicator,
@@ -479,8 +581,8 @@
       color: #05030a;
       font-size: 42px;
       font-weight: 950;
-      background: linear-gradient(145deg, rgba(125,211,168,.96), rgba(75,170,126,.8));
-      box-shadow: 0 18px 42px rgba(0,0,0,.28), 0 0 26px rgba(125,211,168,.14);
+      background: linear-gradient(145deg, rgba(131,217,178,.96), rgba(75,170,126,.8));
+      box-shadow: 0 18px 42px rgba(0,0,0,.28), 0 0 26px rgba(131,217,178,.14);
     }
 
     .success-title,
@@ -503,7 +605,7 @@
       padding: 10px 16px;
       border-radius: 999px;
       color: rgba(255,255,255,.92);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.036);
       border: 1px solid var(--line);
       font-size: clamp(34px, 10vw, 42px);
       line-height: 1;
@@ -517,7 +619,7 @@
       margin: 13px 0;
       padding: 13px 14px;
       border-radius: 22px;
-      background: rgba(255,255,255,.032);
+      background: rgba(255,255,255,.03);
       border: 1px solid var(--line);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
     }
@@ -538,14 +640,14 @@
 
     .success-label {
       min-width: 78px;
-      color: rgba(244,239,255,.38);
+      color: rgba(245,240,255,.38);
       font-size: 13px;
       font-weight: 900;
     }
 
     .success-value {
       flex: 1;
-      color: rgba(244,239,255,.85);
+      color: rgba(245,240,255,.85);
       font-size: 14px;
       font-weight: 900;
       text-align: right;
@@ -557,9 +659,9 @@
       margin: 12px 0;
       padding: 13px 14px;
       border-radius: 20px;
-      color: rgba(244,239,255,.62);
-      background: rgba(255,255,255,.028);
-      border: 1px solid rgba(255,255,255,.075);
+      color: rgba(245,240,255,.62);
+      background: rgba(255,255,255,.026);
+      border: 1px solid rgba(255,255,255,.072);
       font-size: 13px;
       line-height: 1.75;
       text-align: left;
@@ -586,7 +688,7 @@
 
     .record-active {
       color: #fff !important;
-      background: rgba(111,75,216,.22) !important;
+      background: rgba(122,85,231,.2) !important;
       border-color: rgba(155,124,255,.28) !important;
     }
 
@@ -605,12 +707,12 @@
       justify-content: center;
       color: #fff;
       font-size: 48px;
-      background: rgba(215,95,122,.16);
-      border: 1px solid rgba(215,95,122,.22);
+      background: rgba(217,92,123,.16);
+      border: 1px solid rgba(217,92,123,.22);
     }
 
     .status-blocked-message {
-      color: rgba(244,239,255,.76);
+      color: rgba(245,240,255,.76);
       font-size: 14px;
       line-height: 1.85;
       text-align: left;
@@ -625,13 +727,13 @@
       padding: 20px;
       color: #fff;
       text-align: left;
-      background: rgba(255,255,255,.035);
+      background: rgba(255,255,255,.032);
       border: 1px solid var(--line);
     }
 
     .sending-title {
       margin-bottom: 5px;
-      color: rgba(244,239,255,.42);
+      color: rgba(245,240,255,.42);
       font-size: 12px;
       font-weight: 950;
       letter-spacing: 1.2px;
@@ -655,6 +757,8 @@
 
     @media (max-width: 380px) {
       .wrap { padding: 20px 12px 24px; }
+      .wrap::before { left: 12px; }
+      .header { padding-left: 16px; }
       .card { padding: 14px; border-radius: 28px; }
       .btn-title { font-size: 18px; }
       .secondary-actions { gap: 8px; }
@@ -664,12 +768,13 @@
   </style>
 
 
+
 </head>
 
 <body>
   <div class="wrap">
     <div class="header">
-      <div class="brand">小時候打卡系統-國華</div>
+      <div class="brand"><span class="brand-main">小時候打卡系統</span><span class="brand-sub">國華測試區</span></div>
       <div class="subtitle">國華測試區・深夜打卡手帳</div>
     </div>
 
@@ -687,22 +792,22 @@
         <div class="action-list">
           <button class="btn-main punch-work-in" onclick="sendClock('上班打卡')">
             <span class="btn-index">01</span>
-            <span class="btn-copy"><span class="btn-title">上班打卡</span><span class="btn-desc">開始今日班別</span></span>
+            <span class="btn-copy"><span class="btn-kicker">START SHIFT</span><span class="btn-title">上班打卡</span><span class="btn-desc">開始今日班別</span></span>
             <span class="btn-arrow">→</span>
           </button>
           <button class="btn-main punch-break-start" onclick="sendClock('休息開始')">
             <span class="btn-index">02</span>
-            <span class="btn-copy"><span class="btn-title">開始休息</span><span class="btn-desc">紀錄休息開始時間</span></span>
+            <span class="btn-copy"><span class="btn-kicker">BREAK OUT</span><span class="btn-title">開始休息</span><span class="btn-desc">紀錄休息開始時間</span></span>
             <span class="btn-arrow">→</span>
           </button>
           <button class="btn-main punch-break-end" onclick="sendClock('休息結束')">
             <span class="btn-index">03</span>
-            <span class="btn-copy"><span class="btn-title">結束休息</span><span class="btn-desc">回到工作狀態</span></span>
+            <span class="btn-copy"><span class="btn-kicker">BACK TO WORK</span><span class="btn-title">結束休息</span><span class="btn-desc">回到工作狀態</span></span>
             <span class="btn-arrow">→</span>
           </button>
           <button class="btn-main punch-work-out" onclick="sendClock('下班打卡')">
             <span class="btn-index">04</span>
-            <span class="btn-copy"><span class="btn-title">下班打卡</span><span class="btn-desc">完成今日紀錄</span></span>
+            <span class="btn-copy"><span class="btn-kicker">END SHIFT</span><span class="btn-title">下班打卡</span><span class="btn-desc">完成今日紀錄</span></span>
             <span class="btn-arrow">→</span>
           </button>
         </div>
@@ -1632,14 +1737,14 @@ const workDays = workDaySet.size;
   </script>
 <script>
 // =====================================================
-// 國華測試區 V61：深黑紫文青 UI 設計版
-// 保留國華 LIFF_ID / API_URL，改成更深的紫黑色與文青手帳式排版。
+// 國華測試區 V62：深黑紫線條排版 UI 設計版
+// 保留國華 LIFF_ID / API_URL，加入線條、層次、文字排版與更深紫黑色。
 // =====================================================
 setTimeout(function () {
   try {
     const footer = document.querySelector('.footer');
     if (footer) {
-      footer.innerText = 'LIFF ID：2010240381-aeKasoI4｜國華測試區 V61 深黑紫文青版';
+      footer.innerText = 'LIFF ID：2010240381-aeKasoI4｜國華測試區 V62 線條排版設計版';
     }
   } catch (e) {}
 }, 900);
